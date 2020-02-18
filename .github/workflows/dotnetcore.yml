@@ -1,0 +1,25 @@
+name: .NET Core
+
+on: [push]
+
+jobs:
+  build:
+
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+    - name: Build with dotnet
+      run: dotnet build TextDeserializer/TextDeserializer.sln --configuration Release
+    - uses: einaregilsson/build-number@v1
+      with:
+        token: ${{secrets.github_token}}
+    - name: Pack
+      run: dotnet pack --configuration Release -p:PackageVersion=1.0.0.$BUILD_NUMBER-prerelease TextDeserializer/TextDeserializer.sln
+    - name: Publish
+      run: dotnet nuget push "TextDeserializer/TextDeserializer/bin/Release/ASoft.TextDeserializer.1.0.0.$BUILD_NUMBER-prerelease.nupkg" --source nuget.org --api-key ${{ secrets.NuGetAPIKey }}
