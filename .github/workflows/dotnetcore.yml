@@ -22,4 +22,4 @@ jobs:
       with:
         token: ${{secrets.github_token}}
     - name: Publish
-      run: dotnet nuget push "bin/Release/TextDeserializer.0.$BUILD_NUMBER.0-dev.nupkg"
+      run: dotnet nuget push "bin/Release/TextDeserializer.0.$BUILD_NUMBER.0-dev.nupkg" --source nuget.org
