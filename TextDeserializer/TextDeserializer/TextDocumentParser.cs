@@ -8,7 +8,7 @@ using ASoft.TextDeserializer.Extensions;
 
 namespace ASoft.TextDeserializer
 {
-	internal class TextDocumentParser<TDocumentDescriptor> : ITextDocumentParser<TDocumentDescriptor> where TDocumentDescriptor : new()
+	public class TextDocumentParser<TDocumentDescriptor> : ITextDocumentParser<TDocumentDescriptor> where TDocumentDescriptor : new()
 	{
 		private readonly ITextRegexDeserializator textRegexDeserializator;
 		private readonly Dictionary<PropertyInfo, DeserializeCollectionByRegexAttribute> deserializeCollectionByRegexAttributes;
