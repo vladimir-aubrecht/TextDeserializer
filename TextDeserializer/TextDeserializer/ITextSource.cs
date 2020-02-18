@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ASoft.TextDeserializer
 {
-	public interface ITextSource
+	public interface ITextSource : IDisposable
 	{
 		IEnumerable<string> GetPagesText();
 	}
