@@ -16,10 +16,10 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build TextDeserializer/TextDeserializer.sln --configuration Release
-    - name: Pack
-      run: dotnet pack --configuration Release TextDeserializer/TextDeserializer.sln
     - uses: einaregilsson/build-number@v1
       with:
         token: ${{secrets.github_token}}
+    - name: Pack
+      run: dotnet pack --configuration Release --version-suffix dev -p:PackageVersion=1.$BUILD_NUMBER.0 TextDeserializer/TextDeserializer.sln
     - name: Publish
-      run: dotnet nuget push "TextDeserializer/TextDeserializer/bin/Release/TextDeserializer.0.$BUILD_NUMBER.0-dev.nupkg" --source nuget.org --api-key ${{ secrets.NuGetAPIKey }}
+      run: dotnet nuget push "TextDeserializer/TextDeserializer/bin/Release/ASoft.TextDeserializer.1.$BUILD_NUMBER.0-dev.nupkg" --source nuget.org --api-key ${{ secrets.NuGetAPIKey }}
