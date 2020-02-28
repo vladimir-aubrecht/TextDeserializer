@@ -65,16 +65,23 @@ namespace ASoft.TextDeserializer
 
 		private string ParseTableContent(IEnumerable<string> content, Regex pageBodyRegex)
 		{
+			var joinedContent = String.Join("", content);
+
 			if (pageBodyRegex == null)
 			{
-				return String.Join("", content);
+				return joinedContent;
 			}
 
-			var contents = content
-				.Where(pageText => pageBodyRegex.Match(pageText).Success)
-				.Select(pageText => pageBodyRegex.Match(pageText).Groups[1].Value);
+			
+			var match = pageBodyRegex.Match(joinedContent);
 
-			return String.Join("", contents); //Lets merge tables splitted cross multiple pages
+			if (match.Success)
+			{
+				return pageBodyRegex.Match(joinedContent).Groups[1].Value;
+
+			}
+
+			return "";
 		}
 	}
 }
