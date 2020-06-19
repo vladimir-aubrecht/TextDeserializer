@@ -61,4 +61,4 @@ In this example ``DeserializeCollectionByRegex`` attribute has two parameters.
 1. parameter is defining regex how to detect a row in the table (when ``property`` string is found, than it's new row. 
 2. parameter is defining how we should detect the table in a string. Everything within first group will be considered as text from table.
 
-For successfull parsing is necessary to use also attribtue DeserializeByRegex attribute annotating MyModel class, which will decide how row should be parsed.
+For successfull parsing is necessary to use also attribute DeserializeByRegex attribute annotating MyModel class, which will decide how row should be parsed.
