@@ -16,7 +16,7 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build TextDeserializer/TextDeserializer.sln --configuration Release
-    - uses: einaregilsson/build-number@v1
+    - uses: einaregilsson/build-number@v3
       with:
         token: ${{secrets.github_token}}
     - name: Pack
